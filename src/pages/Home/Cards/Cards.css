@@ -1,0 +1,120 @@
+.cards-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 3rem;
+}
+
+.card-box {
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.swiper-container {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.heart-icon {
+    font-size: 18px;
+}
+
+.card-img {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 0.7rem;
+}
+
+.card-info-flex {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 14px;
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    justify-items: end;
+    gap: 0.25rem;
+}
+
+.card-box .swiper-pagination-bullet {
+    background-color: white;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    display: none;
+}
+
+.swiper-container:hover .swiper-button-next {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    z-index: 10;
+    /* Add font size */
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.swiper-container:hover .swiper-button-prev {
+    left: 20px;
+}
+
+.swiper-container:hover .swiper-button-next {
+    right: 10px;
+}
+
+
+.swiper-container:hover .swiper-button-next::before {
+    content: "";
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+:root {
+    --swiper-navigation-size: 14px;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .swiper-container,
+    .card-img {
+        height: 400px;
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .swiper-container,
+    .card-img {
+        height: 50%;
+        max-height: 400px;
+        width: 90vw;
+    }
+
+    .cards-flex {
+        padding: 0px;
+    }
+}
