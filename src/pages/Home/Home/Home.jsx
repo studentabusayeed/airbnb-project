@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import { useMyContext } from '../../../Provider/SearchProvider';
 import Filter from '../Filter/Filter';
 import SingleCard from '../SingleCard/SingleCard';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
     const [selectedFilter, setSelectedFilter] = useState("Amazing");
 
     const [users, setUsers] = useState([]);
 
-        fetch('https://airbnb-server-side.vercel.app/users1')
-            .then(res => res.json())
-            .then(data => setUsers(data));
+    const { toys, setToys } = useMyContext();
+
+    // fetch(`https://toy-project-server.vercel.app/getByText/${searchText}`)
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         setToys(data);
+    //     });
+
+    // fetch(`http://localhost:5000/getByText/${toys}`)
+    //     .then(res => res.json())
+    //     .then(data => setUsers(data));
+
+    fetch('https://airbnb-server-side.vercel.app/users1')
+        .then(res => res.json())
+        .then(data => setUsers(data));
+
 
     const [world, setworld] = useState([]);
 
@@ -40,6 +54,7 @@ const Home = () => {
     fetch('https://airbnb-server-side.vercel.app/users5')
         .then(res => res.json())
         .then(data => setRooms(data));
+
 
 
     return (

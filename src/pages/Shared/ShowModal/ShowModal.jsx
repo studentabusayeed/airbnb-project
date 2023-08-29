@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, TabList, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import PriceRange from './PriceRange';
 
 const ShowModal = ({ isOpen, onClose }) => {
 
@@ -12,12 +13,19 @@ const ShowModal = ({ isOpen, onClose }) => {
         setActiveTab(tabName);
     };
 
+    const myComponent = {
+        width: '600px',
+        height: '450px',
+        overflowX: 'hidden',
+        overflowY: 'scroll'
+    };
+
 
     return (
         <div>
-            <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="flex justify-center" style={myComponent}>
                 <div className="absolute inset-0 bg-black opacity-50"></div>
-                <div className="bg-white px-10 py-6 rounded-lg z-10 relative">
+                <div className="bg-white px-10 py-6 rounded-lg z-10 relative overflow-y-auto mt-10">
                     <div className='flex justify-center'>
                         <button
                             className="absolute top-0 right-0 m-2 p-2 text-gray-500 hover:text-gray-700"
@@ -45,16 +53,17 @@ const ShowModal = ({ isOpen, onClose }) => {
                     <p>Search rooms, entire homes, or any type of place.</p>
                     <Tabs className="text-center bg-white text-black font-bold ml-10 mt-6">
                         <TabList className={activeTab ? "bg-[#3B3B3B] text-white border-2" : "bg-white"} style={{ display: 'flex' }}>
-                            <Tab className="py-5 px-10" onClick={() => handleTabClick("car")}>Any Type</Tab>
-                            <Tab className="py-5 px-10" onClick={() => handleTabClick("track")}>Room</Tab>
-                            <Tab className="py-5 px-10" onClick={() => handleTabClick("cicle")}>Entire home</Tab>
+                            <Tab className="py-5 px-12" onClick={() => handleTabClick("car")}>Any Type</Tab>
+                            <Tab className="py-5 px-12" onClick={() => handleTabClick("track")}>Room</Tab>
+                            <Tab className="py-5 px-12" onClick={() => handleTabClick("cicle")}>Entire home</Tab>
                         </TabList>
                     </Tabs>
                     <div>
                         <hr className='mt-8 mb-2'></hr>
                         <h2 className="text-xl font-semibold mb-1">Price range</h2>
-                        <p>Nightly prices before fees and taxes</p>
-                        <div className='grid grid-cols-2 gap-4 mt-6'>
+                        <p className='mb-8'>Nightly prices before fees and taxes</p>
+                        <PriceRange></PriceRange>
+                        <div className='grid grid-cols-2 gap-4 mt-10'>
                             <div className="mb-4 col-span-2 md:col-span-1">
                                 <input
                                     type="text"
@@ -71,9 +80,12 @@ const ShowModal = ({ isOpen, onClose }) => {
                             </div>
                         </div>
                     </div>
-                    {/* <hr className='mt-8 mb-2'></hr>
+                    <hr className='mt-8 mb-2'></hr>
                     <h2 className="text-xl font-semibold mb-2">Rooms and beds</h2>
-                    <p>Bedrooms</p> */}
+                    <p>Bedrooms</p>
+                    <div className='flex justify-end'>
+                        <button className='bg-black py-2 px-4 rounded-lg text-white'>Show Select</button>
+                    </div>
                 </div>
             </div>
         </div>

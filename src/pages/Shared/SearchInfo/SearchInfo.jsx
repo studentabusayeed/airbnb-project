@@ -7,33 +7,28 @@ import Modal from 'react-modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePickers from '../DatePicker/DatePickers';
+import { useMyContext } from '../../../Provider/SearchProvider';
 
 const SearchInfo = ({ isOpen, onClose }) => {
     const [search, setSearch] = useState(true);
 
+    // const [toys, setToys] = useState("");
 
-    const handleSearch = () => {
-        setSearch(false);
-    }
+    const {toys, setToys} = useMyContext();
 
-    const [toys, setToys] = useState([]);
-    const [searchItem, setSearchItem] = useState("");
-    console.log(searchItem);
-    console.log(toys);
-
-    useEffect(() => {
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => setToys(data));
-    }, []);
-
-    const handleSearchItem = () => {
-        fetch(`data.json/${searchItem}`)
+        fetch(`http://localhost:5000/getByText/${toys}`)
             .then((res) => res.json())
             .then((data) => {
                 setToys(data);
             });
-    };
+
+    // fetch('data.json')
+    //     .then(res => res.json())
+    //     .then(data => setUsers(data));
+
+    const handleSearch = () => {
+        setSearch(false);
+    }
 
     return (
         <div>
@@ -56,13 +51,13 @@ const SearchInfo = ({ isOpen, onClose }) => {
                         </div>
                         <div className='flex justify-center'>
                             <div className='flex justify-center items-center pb-10 w-[65%]'>
-                                <button className="search-item">
+                                <button className="search-item py-2">
                                     <div className="w-full bg-[#fff] input-item">
                                         <label htmlFor="" className="text-sm font-semibold px-1 flex justify-start ml-6">Where</label>
                                         <div className="flex ">
                                             <div className="w-5 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
                                             <input type="text"
-                                                onChange={(e) => setSearchItem(e.target.value)} className=" px-2 pt-1 pb-2 rounded-lg outline-none focus:border-[#00ffc3] w-3/4" placeholder="Search destinations" />
+                                                onChange={(e) => setToys(e.target.value)} className=" px-2 pt-1 pb-2 rounded-lg outline-none focus:border-[#00ffc3] w-3/4" placeholder="Search destinations" />
                                         </div>
                                     </div>
                                     <div className="w-full bg-[#fff] input-item">
@@ -86,7 +81,7 @@ const SearchInfo = ({ isOpen, onClose }) => {
                                             <input onKeyUp={(e) => setExp(e.target.value)} type="text" className=" px-2 pt-1 pb-2 rounded-lg outline-none focus:border-[#00ffc3] w-3/4" placeholder="Add guests" />
                                         </div>
                                     </div>
-                                    <a onClick={handleSearchItem} className="search-item-div">
+                                    <a className="search-item-div">
                                         <FaSearch className="search-item-icon" />
                                         <span className='font-semibold ml-2'>Search</span>
                                     </a>

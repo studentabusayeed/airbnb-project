@@ -30,8 +30,9 @@ const Navbar = () => {
                                 <FaGlobe />
                             </div>
                         </div>
-                    </div> : <div><SearchInfo></SearchInfo></div>
-            }
+                    </div> 
+                    : <SearchInfo></SearchInfo>
+            } 
         </div>
     );
 };

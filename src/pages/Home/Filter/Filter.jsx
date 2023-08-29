@@ -16,7 +16,6 @@ const Filter = ({ selectedFilter, setSelectedFilter }) => {
         setIsModalOpen(false);
     };
 
-
     return (
         <div className='flex justify-center items-center'>
             <div className="filter-div">
